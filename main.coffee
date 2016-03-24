@@ -56,13 +56,12 @@ main = ->
   if !cvs or !cvs.getContext
     return
   _ctx = cvs.getContext "2d"
-  touchevent = ""
-  canTouch = `("ontouchstart" in window)`
-  if canTouch
-    touchevent = "touchstart"
-  else
-    touchevent = "mousedown"
-  cvs.addEventListener touchevent, onClick, false
+  cvs.addEventListener "touchstart", (e)->
+    onClick.call this,e
+    e.stopPropagation()
+    e.preventDefault()
+  cvs.addEventListener "mousedown", (e)->
+    onClick.call this,e
   # create instances
   player = new Player()
   # load unko

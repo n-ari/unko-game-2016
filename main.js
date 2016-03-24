@@ -83,20 +83,20 @@ unkolist = [];
 _ctx = null;
 
 main = function() {
-  var canTouch, cvs, touchevent;
+  var cvs;
   cvs = document.getElementById("cvs");
   if (!cvs || !cvs.getContext) {
     return;
   }
   _ctx = cvs.getContext("2d");
-  touchevent = "";
-  canTouch = ("ontouchstart" in window);
-  if (canTouch) {
-    touchevent = "touchstart";
-  } else {
-    touchevent = "mousedown";
-  }
-  cvs.addEventListener(touchevent, onClick, false);
+  cvs.addEventListener("touchstart", function(e) {
+    onClick.call(this, e);
+    e.stopPropagation();
+    return e.preventDefault();
+  });
+  cvs.addEventListener("mousedown", function(e) {
+    return onClick.call(this, e);
+  });
   player = new Player();
   unko = new Image();
   unko.onload = function() {
