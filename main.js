@@ -90,10 +90,8 @@ main = function() {
   }
   _ctx = cvs.getContext("2d");
   touchevent = "";
-  alert("HEY");
   canTouch = ("ontouchstart" in window);
   if (canTouch) {
-    alert("Smart Phone!");
     touchevent = "touchstart";
   } else {
     touchevent = "mousedown";
