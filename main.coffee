@@ -57,8 +57,8 @@ main = ->
     return
   _ctx = cvs.getContext "2d"
   touchevent = ""
-  canTouch = ("ontouchstart" in window)
-  if "ontouchstart" in window
+  canTouch = `("ontouchstart" in window)`
+  if canTouch
     touchevent = "touchstart"
   else
     touchevent = "mousedown"
