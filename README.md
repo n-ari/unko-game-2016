@@ -2,7 +2,10 @@
 
 💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩💩
 
+## は？
 
+<blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">ごめんなさいごめんなさいごめんなさい <a href="https://t.co/2p2zgjJiG9">https://t.co/2p2zgjJiG9</a> <a href="https://t.co/Jh99OrPELq">https://t.co/Jh99OrPELq</a></p>&mdash; _Nari.coffee (@_n_ari) <a href="https://twitter.com/_n_ari/status/713002029141008386">2016年3月24日</a></blockquote>
+<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 ## なにこれ
 
