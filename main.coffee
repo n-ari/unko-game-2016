@@ -162,7 +162,10 @@ gameoverloop = (runningID)->
 
 onClick = (e)->
   player.vx *= -1
-  if e.clientX < RESTART_WIDTH && e.clientY >= HEIGHT
+  rect = e.target.getBoundingClientRect()
+  x = e.pageX - rect.left
+  y = e.pageY - rect.top
+  if x < RESTART_WIDTH && y >= HEIGHT
     do init
 
 window.onload = main

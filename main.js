@@ -214,8 +214,12 @@ gameoverloop = function(runningID) {
 };
 
 onClick = function(e) {
+  var rect, x, y;
   player.vx *= -1;
-  if (e.clientX < RESTART_WIDTH && e.clientY >= HEIGHT) {
+  rect = e.target.getBoundingClientRect();
+  x = e.pageX - rect.left;
+  y = e.pageY - rect.top;
+  if (x < RESTART_WIDTH && y >= HEIGHT) {
     return init();
   }
 };
