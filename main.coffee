@@ -1,5 +1,7 @@
 WIDTH = 480
 HEIGHT = 480
+APPEND_HEIGHT = 100
+RESTART_WIDTH = 40
 
 class Player
   @w = 48
@@ -68,17 +70,32 @@ main = ->
   unko = new Image()
   unko.onload = ->
     # start loop
-    do mainloop
+    do init
   unko.src = "./unko.png?#{new Date().getTime()}"
 
 timecnt = 0
 cnt = 0
 prob = 0.0
 diff = 0.996
-mainloop = ->
+
+currentID = 0
+
+init = ->
+  timecnt = 0
+  cnt = 0
+  prob = 0.0
+  diff = 0.996
+  player = new Player();
+  unkolist = []
+  loc_id = (new Date()).getMilliseconds()
+  currentID = loc_id
+  mainloop loc_id
+
+mainloop = (runningID)->
+  return if currentID isnt runningID
   # init
   _ctx.fillStyle = "#ccf"
-  _ctx.fillRect 0,0,WIDTH,HEIGHT
+  _ctx.fillRect 0,0,WIDTH,HEIGHT+APPEND_HEIGHT
   ++ timecnt
   # generate unko
   prob *= diff
@@ -86,7 +103,7 @@ mainloop = ->
     prob = 1.0
     unkolist.push new Unko()
   ++cnt
-  if cnt>=1200
+  if cnt>=600
     diff *= 0.995
     console.log diff
     cnt = 0
@@ -107,20 +124,33 @@ mainloop = ->
   player.draw(_ctx)
   for i in [0...unkolist.length]
     unkolist[i].draw(_ctx)
+  lasttime = (timecnt/60.0).toFixed 4
+  _ctx.font = "24px serif"
+  _ctx.fillStyle = "#000"
+  _ctx.fillText "#{lasttime}秒",10,10+24
+  _ctx.fillStyle = "#ffc"
+  _ctx.fillRect 0,HEIGHT,WIDTH,APPEND_HEIGHT
+  _ctx.fillStyle = "#f99"
+  _ctx.fillRect 0,HEIGHT,RESTART_WIDTH,APPEND_HEIGHT
+  _ctx.font = "14px serif"
+  _ctx.fillStyle = "#000"
+  _ctx.fillText "restart",0,HEIGHT+48+14
   if goflag
     # gameover
     cnt = 114514
-    do gameoverloop
+    gameoverloop runningID
     return
-  setTimeout mainloop,16
+  else
+    setTimeout mainloop,16,runningID
 
 rnd = -> Math.floor(Math.random()*256)
 
-gameoverloop = ->
+gameoverloop = (runningID)->
+  return if currentID isnt runningID
   ++cnt
   if cnt>=30
     cnt = 0
-    lasttime = Math.floor(timecnt/60.0*10000.0)/10000.0
+    lasttime = (timecnt/60.0).toFixed 4
     _ctx.drawImage unko, (Math.random()*(WIDTH-Unko.w)),(Math.random()*(HEIGHT-Unko.h))
     _ctx.fillStyle = "rgba(#{rnd()},#{rnd()},#{rnd()},0.3)"
     _ctx.fillRect 0,200-44,WIDTH,96
@@ -128,9 +158,11 @@ gameoverloop = ->
     _ctx.font = "48px serif"
     _ctx.fillText "#{lasttime}秒ぐらい",0,200
     _ctx.fillText "💩を回避したよ💩💩💩💩💩💩💩💩💩💩💩💩",0,248
-  setTimeout gameoverloop,16
+  setTimeout gameoverloop,16,runningID
 
 onClick = (e)->
   player.vx *= -1
+  if e.clientX < RESTART_WIDTH && e.clientY >= HEIGHT
+    do init
 
 window.onload = main
