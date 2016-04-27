@@ -7,7 +7,7 @@ HEIGHT = 480;
 
 APPEND_HEIGHT = 100;
 
-RESTART_WIDTH = 40;
+RESTART_WIDTH = 100;
 
 Player = (function() {
   Player.w = 48;
@@ -178,9 +178,9 @@ mainloop = function(runningID) {
   _ctx.fillRect(0, HEIGHT, WIDTH, APPEND_HEIGHT);
   _ctx.fillStyle = "#f99";
   _ctx.fillRect(0, HEIGHT, RESTART_WIDTH, APPEND_HEIGHT);
-  _ctx.font = "14px serif";
+  _ctx.font = "20px serif";
   _ctx.fillStyle = "#000";
-  _ctx.fillText("restart", 0, HEIGHT + 48 + 14);
+  _ctx.fillText("restart", 16, HEIGHT + 32 + 20);
   if (goflag) {
     cnt = 114514;
     gameoverloop(runningID);

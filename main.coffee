@@ -1,7 +1,7 @@
 WIDTH = 480
 HEIGHT = 480
 APPEND_HEIGHT = 100
-RESTART_WIDTH = 40
+RESTART_WIDTH = 100
 
 class Player
   @w = 48
@@ -132,9 +132,9 @@ mainloop = (runningID)->
   _ctx.fillRect 0,HEIGHT,WIDTH,APPEND_HEIGHT
   _ctx.fillStyle = "#f99"
   _ctx.fillRect 0,HEIGHT,RESTART_WIDTH,APPEND_HEIGHT
-  _ctx.font = "14px serif"
+  _ctx.font = "20px serif"
   _ctx.fillStyle = "#000"
-  _ctx.fillText "restart",0,HEIGHT+48+14
+  _ctx.fillText "restart",16,HEIGHT+32+20
   if goflag
     # gameover
     cnt = 114514
